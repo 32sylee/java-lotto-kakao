@@ -1,7 +1,6 @@
 package lotto.view;
 
 import lotto.dto.LottoDto;
-import lotto.dto.LottoNumberDto;
 import lotto.dto.LottosDto;
 import lotto.dto.RankingsDto;
 import lotto.util.Rank;
@@ -29,9 +28,8 @@ public class LottoUI {
     }
 
     private void printLotto(LottoDto lottoDto) {
-        System.out.println("[" + lottoDto.getLottoNumbers()
+        System.out.println("[" + lottoDto.getLotto()
                 .stream()
-                .map(LottoNumberDto::getNumber)
                 .map(LottoNumberDto -> Integer.toString(LottoNumberDto))
                 .collect(Collectors.joining(", ")) + "]");
     }

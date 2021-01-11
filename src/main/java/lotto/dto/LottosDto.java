@@ -7,14 +7,14 @@ import java.util.stream.Collectors;
 
 public class LottosDto {
 
-    private List<LottoDto> lottoDtos;
+    private final List<LottoDto> lottoDtos;
 
-    private LottosDto(List<LottoDto> lottoDtos) {
+    public LottosDto(List<LottoDto> lottoDtos) {
         this.lottoDtos = lottoDtos;
     }
 
-    public static LottosDto from(Lottos lottos) {
-        return new LottosDto(lottos.getLottos()
+    public static LottosDto from(Lottos lottosObj) {
+        return new LottosDto(lottosObj.getLottos()
                 .stream()
                 .map(LottoDto::from)
                 .collect(Collectors.toList()));

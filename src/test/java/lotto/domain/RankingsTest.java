@@ -19,17 +19,6 @@ public class RankingsTest {
     }
 
     @Test
-    @DisplayName("Rankings를 문자열로 반환한다.")
-    void toStringTest() {
-        assertThat(rankings.toString())
-                .isEqualTo("3개 일치 (5000원)- 1개\n" +
-                        "4개 일치 (50000원)- 1개\n" +
-                        "5개 일치 (1500000원)- 0개\n" +
-                        "5개 일치, 보너스 볼 일치(30000000원)- 1개\n" +
-                        "6개 일치 (2000000000원)- 0개\n");
-    }
-
-    @Test
     @DisplayName("수익률을 계산하여 반환한다.")
     void profitTest(){
         assertThat(rankings.getProfitRate(new Money(14000))).isEqualTo(214678);

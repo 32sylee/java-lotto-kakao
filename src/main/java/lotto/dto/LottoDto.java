@@ -3,27 +3,24 @@ package lotto.dto;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 
-import java.util.Comparator;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoDto {
-    private Set<LottoNumberDto> lottoNumberDtos;
+    private final List<Integer> lotto;
 
-    private LottoDto(Set<LottoNumberDto> lottoNumberDtos) {
-        this.lottoNumberDtos = lottoNumberDtos;
+    public LottoDto(List<Integer> lotto) {
+        this.lotto = lotto;
     }
 
-    public static LottoDto from(Lotto lotto) {
-        Set<LottoNumberDto> newLottoNumberDtos = new TreeSet<>(
-                Comparator.comparingInt(LottoNumberDto::getNumber));
-        for (LottoNumber lottoNumber : lotto.getLottoNumbers()) {
-            newLottoNumberDtos.add(LottoNumberDto.from(lottoNumber));
-        }
-        return new LottoDto(newLottoNumberDtos);
+    public static LottoDto from(Lotto lottoObj) {
+        return new LottoDto(lottoObj.getLottoNumbers()
+                .stream()
+                .map(LottoNumber::getNumber)
+                .collect(Collectors.toList()));
     }
 
-    public Set<LottoNumberDto> getLottoNumbers() {
-        return lottoNumberDtos;
+    public List<Integer> getLotto() {
+        return lotto;
     }
 }
